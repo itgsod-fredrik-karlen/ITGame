@@ -1,56 +1,20 @@
 class Warrior
 
-  attr_reader :name
+  attr_reader :name, :hp, :weapon
 
-  def initialize(name, hp)
+  def initialize(name, hp, weapon)
     @name = name
     @hp = hp
-  end
-
-  def hp
-    raise NotImplementedError
-  end
-
-  def weapon
-    raise NotImplementedError
+    @weapon = weapon
   end
 
   def attack(target)
-    target.take_hit
+    target.take_hit(self.weapon)
   end
 
-  def take_hit
-    #fghjkl
-  end
-
-end
-
-
-
-class SpearWarrior < Warrior
-
-  attr_reader :hp
-
-  def initialize(name)
-    super(name, 10)
-  end
-
-  def weapon
-    'Spear'
-  end
-
-end
-
-class SwordWarrior < Warrior
-
-  attr_reader :hp
-
-  def initialize(name)
-    super(name, 15)
-  end
-
-  def weapon
-    'Sword'
+  def take_hit(weapon)
+    dmg = rand(weapon.dmg_range)
+    @hp -= dmg
   end
 
 end
