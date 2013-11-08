@@ -2,8 +2,9 @@ class Warrior
 
   attr_reader :name
 
-  def initialize(name)
+  def initialize(name, hp)
     @name = name
+    @hp = hp
   end
 
   def hp
@@ -12,6 +13,14 @@ class Warrior
 
   def weapon
     raise NotImplementedError
+  end
+
+  def attack(target)
+    target.take_hit
+  end
+
+  def take_hit
+    #fghjkl
   end
 
 end
@@ -20,32 +29,28 @@ end
 
 class SpearWarrior < Warrior
 
+  attr_reader :hp
+
   def initialize(name)
-    super(name)
+    super(name, 10)
   end
 
   def weapon
     'Spear'
   end
 
-  def hp
-    10
-  end
-
 end
 
 class SwordWarrior < Warrior
 
+  attr_reader :hp
+
   def initialize(name)
-    super(name)
+    super(name, 15)
   end
 
   def weapon
     'Sword'
-  end
-
-  def hp
-    15
   end
 
 end
